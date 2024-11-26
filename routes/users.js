@@ -76,5 +76,27 @@ router.post('/login', (req, res) => {
     });
 });
 
+// API lấy danh sách người dùng
+router.get('/get-users', (req, res) => {
+    const query = 'SELECT id_nguoi_dung, ten_dang_nhap, ho_va_ten, email, so_dien_thoai, dia_chi, vai_tro, ngay_tao FROM nguoi_dung';
+
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Lỗi truy vấn:', err); // In ra chi tiết lỗi
+            return res.status(500).json({ status: 'error', message: 'Lỗi truy vấn cơ sở dữ liệu!' });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({ status: 'error', message: 'Không có người dùng nào!' });
+        }
+
+        return res.status(200).json({
+            status: 'success',
+            message: 'Lấy danh sách người dùng thành công!',
+            data: results,
+        });
+    });
+});
+
 
 module.exports = router;

@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors'); // Import thư viện CORS
 const userRoutes = require('./routes/users'); // Các API của người dùng
+const catalogRuotes = require('./routes/product-catalog');
 
 const app = express();
 const PORT = 3000;
@@ -18,6 +19,7 @@ app.use(bodyParser.json());
 
 // Routes
 app.use('/api/users', userRoutes);
+app.use('/api/product-catalog', catalogRuotes)
 
 // Start server
 app.listen(PORT, () => {
