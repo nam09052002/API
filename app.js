@@ -6,6 +6,7 @@ const userRoutes = require('./routes/users');
 const catalogRoutes = require('./routes/product-catalog');
 const productRoutes = require('./routes/management-products');
 const cartRoutes = require('./routes/carts');
+const orderRoutes = require('./routes/orders');
 const app = express();
 const PORT = 3000;
 
@@ -23,6 +24,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/product-catalog', catalogRoutes);
 app.use('/api/management-products', productRoutes);
 app.use('/api/carts', cartRoutes);
+app.use('/api/orders', orderRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server đang chạy tại http://localhost:${PORT}`);

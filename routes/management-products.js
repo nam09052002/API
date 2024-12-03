@@ -27,7 +27,10 @@ const upload = multer({ storage: storage });
 
 router.post('/add-product', upload.single('anh_san_pham'), (req, res) => {
     if (!req.file) {
-        return res.status(400).json({ status: 'error', message: 'Không có ảnh được tải lên!' });
+        return res.status(400).json({
+            status: 'error',
+            message: 'Không có ảnh được tải lên!'
+        });
     }
 
     const {
@@ -77,7 +80,10 @@ router.get('/get-products', (req, res) => {
     db.query(query, (err, results) => {
         if (err) {
             console.error('Lỗi khi lấy danh sách sản phẩm:', err);
-            return res.status(500).json({ status: 'error', message: 'Lỗi khi lấy danh sách sản phẩm!' });
+            return res.status(500).json({
+                status: 'error',
+                message: 'Lỗi khi lấy danh sách sản phẩm!'
+            });
         }
 
         return res.status(200).json({
